@@ -22,7 +22,8 @@ JSON_PAYLOAD={
 
 
 def diaflow(request):
-	if request.method == 'POST':
-		print ""
+	# if request.method == 'POST':	
+	res = "this is a simple response from web hook"
+	return JsonResponse({'fulfillmentText': res})
 	return JsonResponse(JSON_PAYLOAD)
 	return HttpResponse('hi')
