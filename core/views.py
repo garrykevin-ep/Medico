@@ -3,13 +3,30 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from .models import *
 # Create your views here.
+import json
 
 
 def diaflow(request):
 	res = "this is a simple response from web hook"
-	action = request.POST['queryResult']['action']
+	data = json.loads(request.body)
+	action =  data['queryResult'].get('action','')
+	response = ''
+	if action == 'add.medicine':
+		response = add_medicine(data)
+	else:
+		response = 'action not specified'
+
 	return JsonResponse({'fulfillmentText': action})
-	return JsonResponse(JSON_PAYLOAD)
+
+def add_medicine(data):
+	parameters = data['queryResult']['parameter']
+	try:
+		medicine = Medicine.object.get(name=parameter['name'])
+	except:
+		return 'Medicine not found'
+	medicine.quantity += parameter['quantity']
+	medicine.save()
+	return 'medicine added'
 
 def all_stock():
 	medicines = Medicine.objects.all()
