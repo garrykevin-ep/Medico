@@ -13,6 +13,8 @@ def diaflow(request):
 	response = ''
 	if action == 'add.medicine':
 		response = add_medicine(data)
+	elif action == 'list.medicine':
+		response = list_medicine()
 	else:
 		response = 'action not specified'
 
@@ -28,7 +30,7 @@ def add_medicine(data):
 	medicine.save()
 	return 'medicine added'
 
-def all_stock():
+def list_medicine():
 	medicines = Medicine.objects.all()
 	response = 'you have '
 	last_index = len(medicines)-1
