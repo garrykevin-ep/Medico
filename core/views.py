@@ -23,7 +23,7 @@ def add_medicine(data):
 	try:
 		medicine = Medicine.object.get(name=parameters['name'])
 	except:
-		return 'Medicine not found'
+		return '{} not found'.format(parameters['name'])
 	medicine.quantity += parameters['quantity']
 	medicine.save()
 	return 'medicine added'
