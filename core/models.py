@@ -10,7 +10,7 @@ class Medicine(models.Model):
 	quantity = models.IntegerField()
 
 	def __str__(self):
-		return '{} quantities of '.format(self.quantity,self.name)
+		return '{} quantities of {}'.format(self.quantity,self.name)
 
 class Order(models.Model):
 	user = models.ForeignKey(User,on_delete = models.CASCADE)
