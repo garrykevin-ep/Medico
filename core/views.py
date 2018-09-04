@@ -21,9 +21,9 @@ def diaflow(request):
 def add_medicine(data):
 	parameters = data['queryResult']['parameters']
 	try:
-		medicine = Medicine.object.get(name=parameters['medicine'])
-	except er:
-		return '{} not found {}'.format(parameters['medicine'],er)
+		medicine = Medicine.objects.get(name=parameters['medicine'])
+	except:
+		return '{} not found {}'.format(parameters['medicine'])
 	medicine.quantity += parameters['quantity']
 	medicine.save()
 	return 'medicine added'
