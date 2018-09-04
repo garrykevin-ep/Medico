@@ -1,0 +1,11 @@
+.idea/
+env/
+migrations/
+*.exe
+*.sqlite3
+*.sublime-project
+*.sublime-workspace
+*.pyc
+*.DS_Store
+dump.json
+
