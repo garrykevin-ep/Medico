@@ -16,7 +16,7 @@ def diaflow(request):
 	else:
 		response = 'action not specified'
 
-	return JsonResponse({'fulfillmentText': action})
+	return JsonResponse({'fulfillmentText': response})
 
 def add_medicine(data):
 	parameters = data['queryResult']['parameters']
