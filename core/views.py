@@ -19,12 +19,12 @@ def diaflow(request):
 	return JsonResponse({'fulfillmentText': action})
 
 def add_medicine(data):
-	parameters = data['queryResult']['parameter']
+	parameters = data['queryResult']['parameters']
 	try:
-		medicine = Medicine.object.get(name=parameter['name'])
+		medicine = Medicine.object.get(name=parameters['name'])
 	except:
 		return 'Medicine not found'
-	medicine.quantity += parameter['quantity']
+	medicine.quantity += parameters['quantity']
 	medicine.save()
 	return 'medicine added'
 
