@@ -13,11 +13,14 @@ class Medicine(models.Model):
 		return '{} quantities of {}'.format(self.quantity,self.name)
 
 class Order(models.Model):
-	user = models.ForeignKey(User,on_delete = models.CASCADE)
-	medicines = models.ManyToManyField(Medicine)
+	user = models.CharField(max_length=50) 
+	approved = models.BooleanField(default=False)
+	
+	def __str__(self):
+		return self.user
 	
 
-class OrderDetails(models.Model):
+class OrderDetail(models.Model):
 	order = models.ForeignKey(Order,on_delete = models.CASCADE)
 	medicine = models.ForeignKey(Medicine,on_delete = models.CASCADE) 
-	quantity = models.IntegerField()
+	quantity = models.IntegerField(default=0,blank=True,null=True)
